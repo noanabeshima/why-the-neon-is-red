@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="What light is, why neon glows red, and where a dozen sharp lines come from.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%94%A6%3C/text%3E%3C/svg%3E">
+<title>Why the Neon Is Red</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --ground:#0A090F;
+  --surface:#14121B;
+  --surface-2:#1C1926;
+  --rule:#2B2636;
+  --ink:#EFE8DA;
+  --muted:#9C94AA;
+  --faint:#6B647A;
+  --neon:#FF5A33;
+  --gold:#FFC63D;
+  --measure:33rem;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Newsreader",Georgia,"Times New Roman",serif;
+  font-optical-sizing:auto;
+  font-size:1.0625rem;
+  line-height:1.62;
+  font-weight:300;
+}
+.wrap{max-width:var(--measure);margin:0 auto;padding:0 1.35rem}
+p{margin:0 0 1.05em}
+strong{font-weight:600;color:#fff}
+em{font-style:italic}
+a{color:var(--gold)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:4.5rem 0 2.75rem;overflow:hidden}
+.hero canvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  opacity:.55;pointer-events:none;
+}
+.hero .wrap{position:relative}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 1.6rem;
+}
+h1{
+  font-family:"Bodoni Moda",Didot,"Times New Roman",serif;
+  font-weight:500;
+  font-size:clamp(2.9rem,13vw,4.6rem);
+  line-height:.95;
+  letter-spacing:-.015em;
+  margin:0 0 1.1rem;
+  text-wrap:balance;
+}
+h1 em{font-style:italic;color:var(--neon)}
+.standfirst{
+  font-size:1.15rem;color:var(--muted);max-width:30rem;margin:0;
+}
+.standfirst b{color:var(--ink);font-weight:400}
+
+/* ---------- sections ---------- */
+section{padding:2.6rem 0 .4rem;border-top:1px solid var(--rule);margin-top:2.6rem}
+section:first-of-type{border-top:0}
+.q{
+  font-family:"Bodoni Moda",Didot,serif;
+  font-weight:500;
+  font-size:clamp(1.55rem,6.4vw,2.05rem);
+  line-height:1.12;
+  letter-spacing:-.01em;
+  margin:0 0 .35rem;
+  text-wrap:balance;
+}
+.asker{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 1.5rem;
+}
+h3{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--neon);margin:2.2rem 0 .7rem;
+}
+
+/* ---------- figures ---------- */
+figure{margin:1.9rem 0;}
+.plate{
+  background:var(--surface);
+  border:1px solid var(--rule);
+  border-radius:2px;
+  padding:1.15rem 1.15rem .9rem;
+  overflow-x:auto;
+}
+.plate svg{display:block;width:100%;height:auto;min-width:280px}
+figcaption{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.7rem;line-height:1.55;color:var(--faint);
+  margin-top:.75rem;letter-spacing:.01em;
+}
+figcaption b{color:var(--muted);font-weight:500}
+
+/* full-bleed spectrum strips */
+.strip{margin:1.9rem 0}
+.strip .bar{
+  position:relative;height:64px;border:1px solid var(--rule);border-radius:2px;
+  background:#000;overflow:hidden;
+}
+.strip canvas{display:block;width:100%;height:100%}
+.strip .scale{
+  display:flex;justify-content:space-between;
+  font-family:"IBM Plex Mono",monospace;font-size:.65rem;color:var(--faint);
+  margin-top:.4rem;letter-spacing:.06em;
+}
+.strip .label{
+  font-family:"IBM Plex Mono",monospace;font-size:.68rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 .45rem;
+}
+
+/* pull quote / key line */
+.key{
+  border-left:2px solid var(--neon);
+  padding:.15rem 0 .15rem 1.05rem;
+  margin:1.7rem 0;
+  font-size:1.12rem;
+  color:var(--ink);
+  font-style:italic;
+}
+
+/* data table */
+.tbl{width:100%;border-collapse:collapse;font-size:.9rem;margin:1.4rem 0}
+.tbl th,.tbl td{text-align:left;padding:.6rem .55rem;border-bottom:1px solid var(--rule);vertical-align:top}
+.tbl th{
+  font-family:"IBM Plex Mono",monospace;font-size:.66rem;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);
+}
+.tbl td:first-child{color:var(--ink);white-space:nowrap}
+.tbl .sw{display:inline-block;width:.62rem;height:.62rem;border-radius:50%;margin-right:.45rem;vertical-align:baseline}
+.tblwrap{overflow-x:auto}
+
+.mono{font-family:"IBM Plex Mono",monospace;font-size:.9em;color:var(--gold)}
+
+footer{
+  border-top:1px solid var(--rule);
+  margin-top:3.2rem;padding:1.6rem 0 3.5rem;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.68rem;line-height:1.7;color:var(--faint);letter-spacing:.04em;
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+
+<div class="hero">
+  <canvas id="wavefield" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow">A pizza place · 19 Aug 2026 · for Noa &amp; Gytis</p>
+    <h1>Why the neon<br>is <em>red</em></h1>
+    <p class="standfirst">There was a red tube on the wall and a question underneath it: <b>what is that light, actually?</b> Six answers, in the order you asked them.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section>
+  <h2 class="q">What is light? What&nbsp;should I picture?</h2>
+  <p class="asker">Noa — "I don't really know how to think of light"</p>
+
+  <p>Do not picture a little ball. Picture a <strong>field</strong> — a quantity that has a value at every point in empty space, the way temperature has a value at every point in a room. Space is not empty; it is filled with the electric and magnetic field, usually sitting quietly at zero.</p>
+
+  <p>Shake a charge and you put a kink in that field. The kink does not stay put: a changing electric field creates a magnetic field, and a changing magnetic field creates an electric one, so the disturbance keeps regenerating itself as it moves. That self-chasing pattern <em>is</em> light. Nothing material travels — only the pattern does, and it travels at exactly one speed, always.</p>
+
+  <figure>
+    <div class="plate">
+      <svg viewBox="0 0 640 200" role="img" aria-label="An electric field oscillating vertically and a magnetic field oscillating horizontally, moving together to the right">
+        <defs>
+          <marker id="ar" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 0 L8 4 L0 8 z" fill="#9C94AA"/>
+          </marker>
+        </defs>
+        <line x1="20" y1="100" x2="620" y2="100" stroke="#2B2636" stroke-width="1"/>
+        <path id="ewave" d="M20 100 Q50 30 80 100 T140 100 T200 100 T260 100 T320 100 T380 100 T440 100 T500 100 T560 100 T620 100"
+              fill="none" stroke="#FF5A33" stroke-width="2.2"/>
+        <path d="M20 100 Q50 140 80 100 T140 100 T200 100 T260 100 T320 100 T380 100 T440 100 T500 100 T560 100 T620 100"
+              fill="none" stroke="#4C7BFF" stroke-width="1.6" stroke-dasharray="4 4" opacity=".85"/>
+        <line x1="20" y1="175" x2="600" y2="175" stroke="#9C94AA" stroke-width="1" marker-end="url(#ar)"/>
+        <text x="20" y="192" fill="#6B647A" font-family="IBM Plex Mono, monospace" font-size="11">direction of travel — always c</text>
+        <text x="20" y="26" fill="#FF5A33" font-family="IBM Plex Mono, monospace" font-size="11">E — electric field</text>
+        <text x="200" y="26" fill="#4C7BFF" font-family="IBM Plex Mono, monospace" font-size="11">B — magnetic field, at right angles</text>
+      </svg>
+    </div>
+    <figcaption><b>The wave picture.</b> Two fields at right angles, each one's change feeding the other. Wavelength — crest to crest — is what your eye reads as colour.</figcaption>
+  </figure>
+
+  <p>But that picture is only half true, and the other half is the strange one. When light <em>hands over</em> its energy, it never hands over a little at a time. It arrives in indivisible lumps. Turn a source down and down and the lumps do not get gentler — they get <strong>rarer</strong>. One lands, or none does.</p>
+
+  <p class="key">It travels like a spread-out wave and lands like a hail of pellets. Nothing you have ever held does both, which is why every mental image of a photon is wrong. The honest picture is: a ripple in a field, that can only be paid out in whole coins.</p>
+
+  <p>The coin has a fixed value set by the wavelength: short waves, expensive coins. Blue light delivers roughly twice the energy per photon as red. That single fact drives everything below.</p>
+</section>
+
+<section>
+  <h2 class="q">Why does a gas glow in a few colours and a filament in all of them?</h2>
+  <p class="asker">The pizza-place tube vs. the bulb over the counter</p>
+
+  <p>Because they are two completely different mechanisms wearing the same word, "light".</p>
+
+  <p>A <strong>hot filament</strong> glows because it is hot. Its atoms are jammed together, jostling, and every jostle radiates. There are no special energies in a jostle, so you get every wavelength at once — a smooth hill of colour whose peak slides from red to white as it gets hotter. This is <em>thermal</em> light, and it is the same physics as the sun and a campfire.</p>
+
+  <div class="strip">
+    <p class="label">Tungsten filament — 2900 K — a continuum</p>
+    <div class="bar"><canvas data-kind="continuum" height="64"></canvas></div>
+    <div class="scale"><span>380 nm</span><span>violet · blue · green · yellow · red</span><span>700 nm</span></div>
+  </div>
+
+  <p>A <strong>neon tube</strong> is not hot. It is a nearly-empty glass pipe with a few thousand volts across it. Loose electrons get flung down the tube, slam into isolated neon atoms, and knock their electrons up onto higher shelves. An atom can only sit on specific shelves — that is what "quantised" means — so when the electron drops back down, the photon it emits carries <em>exactly</em> the gap between two shelves. Not approximately. Exactly.</p>
+
+  <div class="strip">
+    <p class="label">Neon — a discharge — bright lines, nothing between</p>
+    <div class="bar"><canvas data-kind="neon" height="64"></canvas></div>
+    <div class="scale"><span>380 nm</span><span>almost all of it lands in the orange-red</span><span>700 nm</span></div>
+  </div>
+
+  <p class="key">The colour <em>is</em> the element. Neon's shelf spacings are neon's alone, so that orange-red is a fingerprint — you can read the gas off the wall from across the room.</p>
+
+  <p>This is not a metaphor for how we know what stars are made of. It is literally how we know: split starlight, look at which lines are there, name the elements. Helium was found in the sun's spectrum before anyone found it on Earth.</p>
+</section>
+
+<section>
+  <h2 class="q">A dozen sharp lines??? Why a dozen in particular?</h2>
+  <p class="asker">Noa</p>
+
+  <p>Nothing magic about twelve. It is a counting problem, and you can do the count.</p>
+
+  <p>Neon's visible glow comes from electrons falling between two crowded groups of levels. The upper group (called <span class="mono">2p</span>) has <strong>10</strong> closely-spaced levels. The lower group (<span class="mono">1s</span>) has <strong>4</strong>. Any upper can drop to any lower, which is 40 candidate jumps — but selection rules, the bookkeeping of angular momentum, forbid some, and 30 survive.</p>
+
+  <figure>
+    <div class="plate">
+      <svg viewBox="0 0 640 250" role="img" aria-label="Ten closely spaced upper levels and four lower levels, with many transitions drawn between them">
+        <text x="20" y="26" fill="#9C94AA" font-family="IBM Plex Mono, monospace" font-size="11">2p — ten levels</text>
+        <g stroke="#EFE8DA" stroke-width="1.6" opacity=".85">
+          <line x1="90" y1="46" x2="330" y2="46"/><line x1="90" y1="53" x2="330" y2="53"/>
+          <line x1="90" y1="59" x2="330" y2="59"/><line x1="90" y1="66" x2="330" y2="66"/>
+          <line x1="90" y1="72" x2="330" y2="72"/><line x1="90" y1="79" x2="330" y2="79"/>
+          <line x1="90" y1="85" x2="330" y2="85"/><line x1="90" y1="92" x2="330" y2="92"/>
+          <line x1="90" y1="98" x2="330" y2="98"/><line x1="90" y1="105" x2="330" y2="105"/>
+        </g>
+        <g stroke="#FF5A33" stroke-width="1" opacity=".5">
+          <line x1="110" y1="46" x2="150" y2="196"/><line x1="140" y1="53" x2="180" y2="205"/>
+          <line x1="170" y1="59" x2="140" y2="214"/><line x1="200" y1="66" x2="250" y2="223"/>
+          <line x1="230" y1="72" x2="200" y2="196"/><line x1="260" y1="79" x2="300" y2="205"/>
+          <line x1="290" y1="85" x2="255" y2="214"/><line x1="320" y1="92" x2="290" y2="223"/>
+          <line x1="125" y1="98" x2="215" y2="205"/><line x1="185" y1="105" x2="275" y2="196"/>
+          <line x1="245" y1="46" x2="180" y2="223"/><line x1="305" y1="53" x2="235" y2="214"/>
+        </g>
+        <text x="20" y="240" fill="#9C94AA" font-family="IBM Plex Mono, monospace" font-size="11">1s — four levels</text>
+        <g stroke="#EFE8DA" stroke-width="1.6" opacity=".85">
+          <line x1="90" y1="196" x2="330" y2="196"/><line x1="90" y1="205" x2="330" y2="205"/>
+          <line x1="90" y1="214" x2="330" y2="214"/><line x1="90" y1="223" x2="330" y2="223"/>
+        </g>
+        <text x="370" y="118" fill="#FFC63D" font-family="IBM Plex Mono, monospace" font-size="13">10 × 4 = 40 candidate jumps</text>
+        <text x="370" y="140" fill="#9C94AA" font-family="IBM Plex Mono, monospace" font-size="13">selection rules allow ~30</text>
+        <text x="370" y="162" fill="#9C94AA" font-family="IBM Plex Mono, monospace" font-size="13">~12 are bright + in the visible</text>
+      </svg>
+    </div>
+    <figcaption><b>Where the dozen comes from.</b> Two crowded shelves, and every allowed way to fall between them is one spectral line.</figcaption>
+  </figure>
+
+  <p>Of those thirty, some are far brighter than others, and some land outside what your eye can see. What is left — around a dozen strong lines, all crammed between <span class="mono">585</span> and <span class="mono">703 nm</span> — blends in your retina into that one unmistakable orange-red.</p>
+
+  <p>So the dozen is not a law. It is what happens when a ten-level shelf sits above a four-level shelf. Different atom, different shelf structure, different number of lines: sodium is famous for essentially <em>two</em> (the yellow doublet at 589 nm), and iron has thousands.</p>
+</section>
+
+<section>
+  <h2 class="q">Why emit one photon instead of two that sum to the same energy?</h2>
+  <p class="asker">Noa</p>
+
+  <p>Two-photon emission is not forbidden. It happens. It just loses the race.</p>
+
+  <p>An excited atom decays by whatever route is <em>fastest</em>, and routes are ranked by how many times the electromagnetic field has to act. Emitting one photon takes one interaction. Splitting the jump into two photons takes two — and every extra interaction costs a factor of the fine-structure constant, <span class="mono">α ≈ 1/137</span>, in the rate.</p>
+
+  <figure>
+    <div class="plate">
+      <svg viewBox="0 0 640 230" role="img" aria-label="One-photon decay is a hundred million times faster than two-photon decay">
+        <line x1="40" y1="40" x2="600" y2="40" stroke="#EFE8DA" stroke-width="1.6"/>
+        <line x1="40" y1="190" x2="600" y2="190" stroke="#EFE8DA" stroke-width="1.6"/>
+        <text x="40" y="28" fill="#9C94AA" font-family="IBM Plex Mono, monospace" font-size="11">excited</text>
+        <text x="40" y="212" fill="#9C94AA" font-family="IBM Plex Mono, monospace" font-size="11">ground</text>
+
+        <path d="M180 40 L180 190" stroke="#FF5A33" stroke-width="2.4"/>
+        <circle cx="180" cy="115" r="7" fill="#FF5A33"/>
+        <text x="200" y="100" fill="#EFE8DA" font-family="IBM Plex Mono, monospace" font-size="12">one photon</text>
+        <text x="200" y="120" fill="#FFC63D" font-family="IBM Plex Mono, monospace" font-size="12">1.6 nanoseconds</text>
+        <text x="200" y="140" fill="#6B647A" font-family="IBM Plex Mono, monospace" font-size="11">one sharp line</text>
+
+        <path d="M440 40 L440 115" stroke="#4C7BFF" stroke-width="2.4"/>
+        <path d="M440 115 L440 190" stroke="#4C7BFF" stroke-width="2.4"/>
+        <circle cx="440" cy="78" r="5" fill="#4C7BFF"/>
+        <circle cx="440" cy="152" r="5" fill="#4C7BFF"/>
+        <text x="462" y="100" fill="#EFE8DA" font-family="IBM Plex Mono, monospace" font-size="12">two photons</text>
+        <text x="462" y="120" fill="#FFC63D" font-family="IBM Plex Mono, monospace" font-size="12">0.12 seconds</text>
+        <text x="462" y="140" fill="#6B647A" font-family="IBM Plex Mono, monospace" font-size="11">a smooth continuum</text>
+        <text x="180" y="222" fill="#6B647A" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle">×1</text>
+        <text x="440" y="222" fill="#6B647A" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle">×α ≈ 1/137 slower per extra vertex</text>
+      </svg>
+    </div>
+    <figcaption><b>Hydrogen, measured.</b> <b>2p→1s</b> by one photon: 1.6 ns. <b>2s→1s</b>, where the one-photon route is forbidden, by two photons: 0.12 s — a hundred million times slower, and the only route left.</figcaption>
+  </figure>
+
+  <p>So in an ordinary atom the one-photon route fires roughly <span class="mono">10⁸</span> times faster and the two-photon version never gets a turn. But when symmetry <em>forbids</em> the single-photon jump — hydrogen's metastable 2s state is the textbook case — two-photon emission is all that remains, and you see it.</p>
+
+  <p>And here is the lovely tell: two photons sharing one fixed energy budget can split it any way they like. So single-photon decay gives you a <strong>sharp line</strong>, and two-photon decay gives you a <strong>smooth continuum</strong> that sums, pair by pair, to exactly the same gap.</p>
+</section>
+
+<section>
+  <h2 class="q">Are LEDs made with phosphors? And what <em>is</em> a phosphor?</h2>
+  <p class="asker">Gytis, then Noa</p>
+
+  <p>A phosphor is a colour launderer. It is a transparent crystal — a host — deliberately contaminated with a trace of some other ion, the activator. The host does nothing but hold the ion still and set its surroundings; the activator does the work. Yttrium aluminium garnet with a pinch of cerium (<span class="mono">YAG:Ce</span>) is the workhorse.</p>
+
+  <p>Feed it a high-energy photon and it swallows it, quietly loses a bit of the energy as heat shaking the crystal, then re-emits a lower-energy one. Always downhill — that loss is called the <strong>Stokes shift</strong>, and it is why a phosphor turns blue into yellow and never the reverse.</p>
+
+  <p>Crucially the output is <em>broad</em>, not a line. A lone atom in a vacuum has knife-edge levels; an ion locked in a vibrating crystal has its levels smeared by that vibration into a wide band. That smearing is the whole point — it is how you get something that looks like a colour rather than a laser.</p>
+
+  <figure>
+    <div class="plate">
+      <svg viewBox="0 0 640 220" role="img" aria-label="A blue LED chip pumping a yellow phosphor, the two together making white">
+        <rect x="30" y="80" width="86" height="60" rx="3" fill="#1C1926" stroke="#4C7BFF" stroke-width="1.6"/>
+        <text x="73" y="115" fill="#4C7BFF" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle">InGaN</text>
+        <text x="73" y="163" fill="#6B647A" font-family="IBM Plex Mono, monospace" font-size="10" text-anchor="middle">blue chip</text>
+        <text x="73" y="177" fill="#6B647A" font-family="IBM Plex Mono, monospace" font-size="10" text-anchor="middle">450 nm</text>
+
+        <g stroke="#4C7BFF" stroke-width="2">
+          <line x1="122" y1="100" x2="196" y2="100"/>
+          <line x1="122" y1="120" x2="196" y2="120"/>
+        </g>
+
+        <rect x="204" y="70" width="96" height="80" rx="3" fill="#231d16" stroke="#FFC63D" stroke-width="1.6"/>
+        <text x="252" y="106" fill="#FFC63D" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle">YAG:Ce</text>
+        <text x="252" y="122" fill="#6B647A" font-family="IBM Plex Mono, monospace" font-size="10" text-anchor="middle">phosphor</text>
+        <text x="252" y="177" fill="#6B647A" font-family="IBM Plex Mono, monospace" font-size="10" text-anchor="middle">absorbs blue, re-emits broad yellow</text>
+
+        <g stroke-width="2">
+          <line x1="306" y1="86" x2="380" y2="86" stroke="#4C7BFF"/>
+          <line x1="306" y1="104" x2="380" y2="104" stroke="#FFC63D"/>
+          <line x1="306" y1="122" x2="380" y2="122" stroke="#FFC63D"/>
+          <line x1="306" y1="140" x2="380" y2="140" stroke="#FFC63D"/>
+        </g>
+
+        <text x="398" y="100" fill="#EFE8DA" font-family="IBM Plex Mono, monospace" font-size="13">leftover blue</text>
+        <text x="398" y="120" fill="#EFE8DA" font-family="IBM Plex Mono, monospace" font-size="13">+ broad yellow</text>
+        <text x="398" y="142" fill="#FF5A33" font-family="IBM Plex Mono, monospace" font-size="13">= &quot;white&quot;</text>
+      </svg>
+    </div>
+    <figcaption><b>Almost every white LED is a blue LED wearing a yellow coat.</b> Only some of the blue gets converted; the surviving blue plus the broad yellow trips your three cone types into reporting white.</figcaption>
+  </figure>
+
+  <p>So: <strong>are all LEDs phosphor LEDs? No.</strong> A red, green, blue, or amber indicator LED is bare semiconductor, emitting directly, no phosphor at all. But essentially every <em>white</em> LED is a blue chip plus phosphor — because there is no such thing as a white-emitting semiconductor junction.</p>
+
+  <p>The catch is that yellow band has a hole in the deep red, which is exactly why cheap LED light makes skin and food look grey. The fix is a second phosphor, a red nitride, added to fill it in. That is the difference you are paying for when a bulb advertises high CRI.</p>
+
+  <p>And the same trick, one generation older, is sitting in every fluorescent tube: an argon-and-mercury discharge that emits mostly invisible ultraviolet, coating the inside of the glass with phosphor to convert that UV down into visible light. The glowing thing you see is the coating, not the gas.</p>
+</section>
+
+<section>
+  <h2 class="q">So what is actually in each tube?</h2>
+  <p class="asker">A field guide for the walk home</p>
+
+  <div class="tblwrap">
+  <table class="tbl">
+    <thead><tr><th>Source</th><th>Mechanism</th><th>Spectrum</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="sw" style="background:#FF5A33"></span>Neon</td>
+        <td>Gas discharge, pure neon</td>
+        <td>~12 lines, 585–703 nm. Orange-red only. No filter makes it another colour.</td>
+      </tr>
+      <tr>
+        <td><span class="sw" style="background:#4C7BFF"></span>"Neon", blue</td>
+        <td>Argon + a mercury droplet</td>
+        <td>Mercury lines + UV. Coloured glass or phosphor sets the final hue — this is how signs get every colour that isn't red.</td>
+      </tr>
+      <tr>
+        <td><span class="sw" style="background:#FFC63D"></span>Sodium street lamp</td>
+        <td>Sodium vapour discharge</td>
+        <td>Essentially <em>one</em> yellow doublet at 589 nm. Everything under it is monochrome — the light has no other colours to reflect.</td>
+      </tr>
+      <tr>
+        <td><span class="sw" style="background:#FFE9C4"></span>Halogen</td>
+        <td>Tungsten at ~3000 K, plus a trace of iodine or bromine</td>
+        <td>Full smooth continuum, CRI ≈ 100. The halogen carries evaporated tungsten back to the filament, so it runs hotter and lasts longer than a plain bulb.</td>
+      </tr>
+      <tr>
+        <td><span class="sw" style="background:#EFE8DA"></span>Fluorescent</td>
+        <td>Mercury discharge → UV → phosphor</td>
+        <td>Broad phosphor bands with mercury's sharp lines poking through. A hybrid.</td>
+      </tr>
+      <tr>
+        <td><span class="sw" style="background:#BFD9FF"></span>White LED</td>
+        <td>Blue junction → phosphor</td>
+        <td>A blue spike plus a broad yellow hill, with a red dip unless a second phosphor fills it.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="key">Sharp lines mean isolated atoms taking specific steps. Smooth hills mean something hot, or something vibrating. Every light you will look at tonight is one, the other, or a deliberate mixture.</p>
+</section>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    Built for Noa &amp; Gytis from the group thread, 19 August 2026.<br>
+    Numbers are measured values — neon 585.2–703.2 nm, hydrogen 2p→1s 1.6 ns, 2s→1s 0.12 s.<br>
+    The spectra above are drawn at real wavelength positions.
+  </div>
+</footer>
+
+</div>
+
+<script>
+// wavelength (nm) -> approximate sRGB, Bruton's method
+function wl2rgb(w){
+  var r=0,g=0,b=0,a=1;
+  if(w>=380&&w<440){r=-(w-440)/60;b=1;}
+  else if(w<490){g=(w-440)/50;b=1;}
+  else if(w<510){g=1;b=-(w-510)/20;}
+  else if(w<580){r=(w-510)/70;g=1;}
+  else if(w<645){r=1;g=-(w-645)/65;}
+  else if(w<=780){r=1;}
+  if(w>700)a=.3+.7*(780-w)/80;
+  else if(w<420)a=.3+.7*(w-380)/40;
+  var f=function(c){return Math.round(255*Math.pow(Math.max(0,Math.min(1,c*a)),0.8));};
+  return [f(r),f(g),f(b)];
+}
+
+var NEON=[ // wavelength nm, relative brightness
+ [585.2,1.0],[588.2,.35],[594.5,.5],[597.6,.4],[603.0,.45],[607.4,.5],
+ [609.6,.5],[614.3,.75],[616.4,.5],[621.7,.45],[626.6,.6],[630.5,.5],
+ [633.4,.55],[638.3,.85],[640.2,.95],[650.7,.7],[653.3,.4],[659.9,.5],
+ [667.8,.45],[671.7,.4],[692.9,.35],[703.2,.5]];
+
+function draw(cv){
+  var kind=cv.dataset.kind;
+  var w=cv.clientWidth||600, h=cv.clientHeight||64;
+  var dpr=window.devicePixelRatio||1;
+  cv.width=w*dpr; cv.height=h*dpr;
+  var x=cv.getContext('2d'); x.scale(dpr,dpr);
+  x.fillStyle='#000'; x.fillRect(0,0,w,h);
+  var lo=380, hi=700;
+  if(kind==='continuum'){
+    for(var i=0;i<w;i++){
+      var wl=lo+(hi-lo)*i/w;
+      var c=wl2rgb(wl);
+      // 2900 K blackbody weighting, normalised: rises steeply toward red
+      var T=2900, l=wl*1e-9;
+      var B=1/(Math.pow(l,5)*(Math.exp(1.4388e-2/(l*T))-1));
+      var Bmax=1/(Math.pow(700e-9,5)*(Math.exp(1.4388e-2/(700e-9*T))-1));
+      var k=Math.pow(B/Bmax,0.55);
+      x.fillStyle='rgb('+Math.round(c[0]*k)+','+Math.round(c[1]*k)+','+Math.round(c[2]*k)+')';
+      x.fillRect(i,0,1,h);
+    }
+  } else {
+    for(var j=0;j<NEON.length;j++){
+      var nm=NEON[j][0], br=NEON[j][1];
+      var px=(nm-lo)/(hi-lo)*w;
+      var col=wl2rgb(nm);
+      var grad=x.createLinearGradient(px-3,0,px+3,0);
+      var rgb=col[0]+','+col[1]+','+col[2];
+      grad.addColorStop(0,'rgba('+rgb+',0)');
+      grad.addColorStop(.5,'rgba('+rgb+','+br+')');
+      grad.addColorStop(1,'rgba('+rgb+',0)');
+      x.fillStyle=grad; x.fillRect(px-3,0,6,h);
+      x.fillStyle='rgba('+rgb+','+Math.min(1,br+.15)+')';
+      x.fillRect(px-0.6,0,1.2,h);
+    }
+  }
+}
+
+// hero field: a travelling wave that pays out in discrete lumps
+(function(){
+  var cv=document.getElementById('wavefield');
+  if(!cv) return;
+  var x=cv.getContext('2d'), t=0, raf=null;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){
+    var dpr=window.devicePixelRatio||1;
+    cv.width=cv.clientWidth*dpr; cv.height=cv.clientHeight*dpr;
+    x.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function frame(){
+    var w=cv.clientWidth,h=cv.clientHeight;
+    x.clearRect(0,0,w,h);
+    for(var row=0;row<4;row++){
+      var y0=h*(0.25+row*0.19), amp=9+row*3, k=0.022+row*0.004;
+      x.beginPath();
+      for(var i=0;i<=w;i+=3){
+        var y=y0+Math.sin(i*k - t*(0.9+row*0.15))*amp;
+        i?x.lineTo(i,y):x.moveTo(i,y);
+      }
+      x.strokeStyle='rgba(255,90,51,'+(0.13-row*0.022)+')';
+      x.lineWidth=1.2; x.stroke();
+      var pxs=(t*(28+row*7))%(w+120)-60;
+      x.beginPath(); x.arc(pxs,y0+Math.sin(pxs*k-t*(0.9+row*0.15))*amp,2.4,0,6.284);
+      x.fillStyle='rgba(255,198,61,'+(0.5-row*0.09)+')'; x.fill();
+    }
+    t+=0.016;
+    raf=requestAnimationFrame(frame);
+  }
+  size();
+  if(reduce){ t=1; frame(); cancelAnimationFrame(raf); }
+  else frame();
+  window.addEventListener('resize',function(){size();});
+})();
+
+function drawAll(){document.querySelectorAll('canvas[data-kind]').forEach(draw);}
+drawAll();
+window.addEventListener('resize',drawAll);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(drawAll);
+</script>
+
+</html>
